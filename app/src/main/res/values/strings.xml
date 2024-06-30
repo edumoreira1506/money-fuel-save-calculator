@@ -4,4 +4,9 @@
     <string name="result">Resultado:</string>
     <string name="calc">Calcular</string>
     <string name="clear">Limpar</string>
+    <string name="fuel_one">Combustível 1</string>
+    <string name="fuel_two">Combustível 2</string>
+    <string name="value_per_l">"Valor por L do "</string>
+    <string name="gas">Gasolina</string>
+    <string name="alcohol">Alcool</string>
 </resources>

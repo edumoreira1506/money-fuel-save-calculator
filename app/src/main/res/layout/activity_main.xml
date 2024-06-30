@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:hint="Combustível 1"
         app:layout_constraintStart_toEndOf="@+id/icon_fuel_one"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -65,7 +64,6 @@
         android:id="@+id/fuel_two_input_container"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Combustível 2"
         app:layout_constraintBottom_toBottomOf="@+id/icon_fuel_two"
         app:layout_constraintStart_toStartOf="@+id/fuel_one_input_container"
         app:layout_constraintTop_toTopOf="@+id/icon_fuel_two">
