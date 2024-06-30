@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         binding.searchFuelTwoButton.setOnClickListener {
             onSearchButtonClick("fuelTwo")
         }
+
+        binding.clearButton.setOnClickListener {
+            clearAppState()
+        }
     }
 
     private fun updateHints() {
@@ -39,6 +43,16 @@ class MainActivity : AppCompatActivity() {
         binding.fuelTwoInputContainer.hint = fuelTwo
         binding.priceOneInputContainer.hint = getString(R.string.value_per_l) + fuelOne
         binding.priceTwoInputContainer.hint = getString(R.string.value_per_l) + fuelTwo
+    }
+
+    private fun clearAppState() {
+        fuelOne =  getString(R.string.fuel_one)
+        fuelTwo = getString(R.string.fuel_two)
+
+        binding.priceOneInput.text?.clear()
+        binding.priceTwoInput.text?.clear()
+
+        updateHints()
     }
 
     private fun onSearchButtonClick(fuel: String) {
