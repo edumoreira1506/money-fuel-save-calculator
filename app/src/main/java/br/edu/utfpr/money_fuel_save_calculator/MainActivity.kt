@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.utfpr.money_fuel_save_calculator.databinding.ActivityMainBinding
+import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -36,6 +37,40 @@ class MainActivity : AppCompatActivity() {
         binding.clearButton.setOnClickListener {
             clearAppState()
         }
+
+        binding.calcButton.setOnClickListener {
+            onCalcClick()
+        }
+    }
+
+    private fun onCalcClick() {
+        val fuelOneConsumption = binding.fuelOneInput.text.toString().toDoubleOrNull()
+        val fuelTwoConsumption = binding.fuelTwoInput.text.toString().toDoubleOrNull()
+        val fuelOneValuePerLiter = binding.priceOneInput.text.toString().toDoubleOrNull()
+        val fuelTwoValuePerLiter = binding.priceTwoInput.text.toString().toDoubleOrNull()
+
+        if (fuelOneConsumption == null ||
+            fuelTwoConsumption == null ||
+            fuelOneValuePerLiter == null ||
+            fuelTwoValuePerLiter == null) {
+            return
+        }
+
+        val fuelOnePerLiter = fuelOneValuePerLiter / fuelOneConsumption
+        val formattedFuelOnePerLiter = NumberFormat.getCurrencyInstance().format(fuelOnePerLiter)
+        val fuelTwoPerLiter = fuelTwoValuePerLiter / fuelTwoConsumption
+        val formattedFuelTwoPerLiter = NumberFormat.getCurrencyInstance().format(fuelTwoPerLiter)
+
+        binding.resultOne.text = getString(R.string.value_per_km, fuelOne, formattedFuelOnePerLiter)
+        binding.resultTwo.text = getString(R.string.value_per_km, fuelTwo, formattedFuelTwoPerLiter)
+
+        if (fuelOnePerLiter == fuelTwoPerLiter) {
+            binding.resultConclusion.text = getString(R.string.same_price)
+        } else if (fuelOnePerLiter > fuelTwoPerLiter) {
+            binding.resultConclusion.text = getString(R.string.cheap, fuelTwo)
+        } else {
+            binding.resultConclusion.text = getString(R.string.cheap, fuelOne)
+        }
     }
 
     private fun updateHints() {
@@ -51,6 +86,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.priceOneInput.text?.clear()
         binding.priceTwoInput.text?.clear()
+        binding.fuelOneInput.text?.clear()
+        binding.fuelTwoInput.text?.clear()
+
+        binding.resultOne.text = "-"
+        binding.resultTwo.text = "-"
+        binding.resultConclusion.text = "====="
 
         updateHints()
     }

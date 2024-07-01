@@ -9,4 +9,7 @@
     <string name="value_per_l">"Valor por L do "</string>
     <string name="gas">Gasolina</string>
     <string name="alcohol">Alcool</string>
+    <string name="value_per_km">Custo por km com %1$s :%2$s</string>
+    <string name="cheap">%1$s é mais barata</string>
+    <string name="same_price">Você escolhe, está no mesmo valor</string>
 </resources>
